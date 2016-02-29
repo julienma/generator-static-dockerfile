@@ -48,7 +48,6 @@ module.exports = yeoman.generators.Base.extend({
       this.log(intro + ' from ' + chalk.magenta(this.folder) + '.\n');
       done();
     }
-
   },
 
   writing: function () {
@@ -61,7 +60,9 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('.nginx.conf'),
       this.destinationPath('.nginx.conf'),
-      { folder: this.folder }
+      {
+        folder: this.folder
+      }
     );
   }
 

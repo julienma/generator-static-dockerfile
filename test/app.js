@@ -13,7 +13,8 @@ describe('generator-static-dockerfile:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'Dockerfile',
+      '.nginx.conf'
     ]);
   });
 });
