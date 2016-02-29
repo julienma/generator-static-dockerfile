@@ -1,5 +1,6 @@
-# generator-static-dockerfile [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Easily add a Dockerfile to serve your static site with standard Nginx. Choose your base directory to be served (e.g. dist or build).
+# generator-static-dockerfile [![NPM version][npm-image]][npm-url]
+> Easily add a Dockerfile to serve your static site with standard Nginx. 
+> Choose your base directory to be served (e.g. dist or build).
 
 ## Installation
 
@@ -10,11 +11,13 @@ npm install -g yo
 npm install -g generator-static-dockerfile
 ```
 
-Then generate your new project:
+Then generate the Dockerfile in an existing project:
 
 ```bash
-yo static-dockerfile
+yo static-dockerfile [folder]
 ```
+
+If you don't pass [folder] when calling yo, you will be prompted to give it. You can leave it blank, if you want to serve files from your current root folder.
 
 ## Getting To Know Yeoman
 
