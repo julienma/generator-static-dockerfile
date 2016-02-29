@@ -19,6 +19,13 @@ yo static-dockerfile [folder]
 
 If you don't pass [folder] when calling yo, you will be prompted to give it. You can leave it blank, if you want to serve files from your current root folder.
 
+## Make sure that your build / dist folder is NOT .gitignore'd!
+
+If you've used a generator to bootstrap your site, there's 90% chance the static output folder is listed in `.gitignore` (e.g. Yeoman with the `dist` folder).
+So remove that folder from your `.gitignore` and make sure it is commited.
+
+If you don't consider this a best-practice (and you'd be right), then you'll have to find a way to get the content of that static output folder pushed into your Docker container.
+
 ## Getting To Know Yeoman
 
 Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
@@ -30,7 +37,3 @@ MIT © [Julien M.]()
 
 [npm-image]: https://badge.fury.io/js/generator-static-dockerfile.svg
 [npm-url]: https://npmjs.org/package/generator-static-dockerfile
-[travis-image]: https://travis-ci.org/julienma/generator-static-dockerfile.svg?branch=master
-[travis-url]: https://travis-ci.org/julienma/generator-static-dockerfile
-[daviddm-image]: https://david-dm.org/julienma/generator-static-dockerfile.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/julienma/generator-static-dockerfile
