@@ -1,6 +1,6 @@
 {
   "name": "generator-static-dockerfile",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Easily add a Dockerfile to serve your static site with standard Nginx. Choose your base directory to be served (e.g. dist / build).",
   "homepage": "https://github.com/julienma/generator-static-dockerfile/",
   "author": {
