@@ -9,14 +9,18 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the prime ' + chalk.red('generator-static-dockerfile') + ' generator!'
+      'Let\'s serve some ' + chalk.red('static content') + '!'
     ));
 
+    this.log('This will create a Dockerfile and a .nginx.conf at the root of this folder.\nPushing to your Docker / Dokku remote will create a barebone Nginx server which will serve your static files.\n');
+
+    this.log('Based on current root, which sub-folder do you want to serve html from?');
+
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'folder',
+      message: 'Folder with your static files (e.g. "dist" or "app/build"). Leave blank for current root.',
+      default: ''
     }];
 
     this.prompt(prompts, function (props) {
@@ -28,13 +32,17 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
+    // Copy Dockerfile as is
     this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+      this.templatePath('Dockerfile'),
+      this.destinationPath('Dockerfile')
     );
-  },
-
-  install: function () {
-    this.installDependencies();
+    // Copy .nginx.conf and inject the value of <folder>
+    this.fs.copyTpl(
+      this.templatePath('.nginx.conf'),
+      this.destinationPath('.nginx.conf'),
+      { folder: this.props.folder }
+    );
   }
+
 });
