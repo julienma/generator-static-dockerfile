@@ -14,8 +14,6 @@ module.exports = yeoman.generators.Base.extend({
       required: false,
       desc: 'Based on current root, sub-folder you want to serve html from.'
     });
-    // And you can then access it later on this way; e.g. CamelCased
-    // this.folder = _.camelCase(this.folder);
   },
 
   prompting: function () {
