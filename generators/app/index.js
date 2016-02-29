@@ -4,31 +4,53 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
+  // note: arguments and options should be defined in the constructor.
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    // This makes `folder` an optional argument.
+    this.argument('folder', {
+      type: String,
+      required: false,
+      desc: 'Based on current root, sub-folder you want to serve html from.'
+    });
+    // And you can then access it later on this way; e.g. CamelCased
+    // this.folder = _.camelCase(this.folder);
+  },
+
   prompting: function () {
     var done = this.async();
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Let\'s serve some ' + chalk.red('static content') + '!'
+      'Let\'s serve some ' + chalk.magenta('static content') + '!'
     ));
 
-    this.log('This will create a Dockerfile and a .nginx.conf at the root of this folder.\nPushing to your Docker / Dokku remote will create a barebone Nginx server which will serve your static files.\n');
+    var intro = 'This will create a Dockerfile and a .nginx.conf at the root of this folder.\nPushing to your Docker / Dokku remote will create a barebone Nginx server which will serve your static files';
 
-    this.log('Based on current root, which sub-folder do you want to serve html from?');
+    if (typeof this.folder === 'undefined') {
+      this.log(intro + '.\n');
+      this.log('Based on current root, which sub-folder do you want to serve html from?');
 
-    var prompts = [{
-      type: 'input',
-      name: 'folder',
-      message: 'Folder with your static files (e.g. "dist" or "app/build"). Leave blank for current root.',
-      default: ''
-    }];
+      var prompts = [{
+        type: 'input',
+        name: 'folder',
+        message: 'Folder with your static files (e.g. "dist" or "app/build"). Leave blank for current root.',
+        default: ''
+      }];
 
-    this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
+      this.prompt(prompts, function (props) {
+        this.props = props;
+        // To access props later use this.props.someOption;
+        this.folder = this.props.folder;
 
+        done();
+      }.bind(this));
+    } else {
+      this.log(intro + ' from ' + chalk.magenta(this.folder) + '.\n');
       done();
-    }.bind(this));
+    }
+
   },
 
   writing: function () {
@@ -41,7 +63,7 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('.nginx.conf'),
       this.destinationPath('.nginx.conf'),
-      { folder: this.props.folder }
+      { folder: this.folder }
     );
   }
 
