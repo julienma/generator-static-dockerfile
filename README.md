@@ -2,6 +2,11 @@
 > Easily add a Dockerfile to serve your static site with standard Nginx. 
 > Choose your base directory to be served (e.g. dist or build).
 
+## What's generated?
+
+A [Dockerfile](generators/app/templates/Dockerfile) and an [.nginx.conf](generators/app/templates/.nginx.conf) are generated at the root of the current directory.
+They're basic configurations and focused on serving static files.
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-static-dockerfile using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
