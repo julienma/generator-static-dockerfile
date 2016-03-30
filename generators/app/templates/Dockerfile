@@ -7,6 +7,6 @@ RUN apt-get update && \
 RUN mkdir /app
 ADD . /app
 
-EXPOSE 5000
+EXPOSE 80
 
 CMD ["nginx", "-c", "/app/.nginx.conf"]

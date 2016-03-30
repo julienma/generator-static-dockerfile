@@ -5,7 +5,7 @@
 ## What's generated?
 
 A [Dockerfile](generators/app/templates/Dockerfile) and an [.nginx.conf](generators/app/templates/.nginx.conf) are generated at the root of the current directory.
-They're basic configurations and focused on serving static files.
+They're basic configurations and focused on serving static files, and only expose port 80 (HTTP) for now.
 
 ## Installation
 
